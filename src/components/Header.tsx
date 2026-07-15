@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { nav } from "@/lib/site-content";
+import { nav, siteMeta } from "@/lib/site-content";
 import { MenuIcon, CloseIcon } from "./icons";
 
 export default function Header() {
@@ -39,8 +39,13 @@ export default function Header() {
             className="h-11 w-11 object-contain"
             priority
           />
-          <span className="font-heading text-lg font-semibold text-petrol">
-            Gentle Smiles
+          <span className="flex flex-col leading-none">
+            <span className="font-heading text-lg font-semibold text-petrol">
+              {siteMeta.shortName}
+            </span>
+            <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted">
+              Dental Clinic
+            </span>
           </span>
         </a>
 
@@ -56,6 +61,7 @@ export default function Header() {
           ))}
           <a
             href="#contact"
+            data-magnetic
             className="rounded-full bg-petrol px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-petrol-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petrol"
           >
             Contact Us

@@ -19,11 +19,15 @@
   --color-ink: var(--color-ink);
   --color-muted: var(--color-muted);
   --font-sans: var(--font-inter);
-  --font-heading: var(--font-poppins);
+  --font-heading: var(--font-fraunces);
 }
 
-html {
-  scroll-behavior: smooth;
+html.lenis {
+  height: auto;
+}
+
+html.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 body {
@@ -32,8 +36,7 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none;
 }

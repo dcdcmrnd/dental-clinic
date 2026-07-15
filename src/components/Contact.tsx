@@ -10,8 +10,11 @@ import {
   PhoneIcon,
   PinIcon,
 } from "./icons";
+import DavaoMap from "./DavaoMap";
 import Flourish from "./Flourish";
 import Reveal from "./Reveal";
+import SplitReveal from "./SplitReveal";
+import VelocityWarp from "./VelocityWarp";
 import WaveDivider from "./WaveDivider";
 
 const socialIcons = {
@@ -25,7 +28,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative bg-bg-soft py-24"
+      className="relative bg-white/90 py-20"
       aria-labelledby="contact-heading"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
@@ -34,12 +37,14 @@ export default function Contact() {
             Contact
           </p>
           <Flourish className="mt-2" align="center" />
-          <h2
-            id="contact-heading"
-            className="mt-4 font-heading text-3xl font-bold text-ink sm:text-4xl"
-          >
-            Book your visit today
-          </h2>
+          <VelocityWarp>
+            <SplitReveal
+              as="h2"
+              id="contact-heading"
+              text="Book your visit today"
+              className="mt-4 font-heading text-3xl italic font-medium text-ink sm:text-4xl"
+            />
+          </VelocityWarp>
           <p className="mt-4 text-base leading-relaxed text-muted">
             Reach out through the form, give us a call, or message us on Facebook — we&apos;d love to see your smile.
           </p>
@@ -115,15 +120,7 @@ export default function Contact() {
 
           <Reveal className="lg:col-span-3" delayMs={100}>
             <div className="overflow-hidden rounded-[1.75rem] rounded-tr-[2.5rem] border-2 border-accent/60 shadow-sm shadow-ink/5">
-              <iframe
-                title="Gentle Smiles Dental Clinic location map"
-                src={`https://maps.google.com/maps?q=${encodeURIComponent(
-                  contact.mapQuery
-                )}&z=15&output=embed`}
-                className="h-64 w-full border-0 sm:h-72"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              <DavaoMap />
             </div>
 
             <form
@@ -191,7 +188,7 @@ export default function Contact() {
         </div>
       </div>
 
-      <WaveDivider toneClassName="text-ink" mirror />
+      <WaveDivider toneClassName="text-ink/95" mirror />
     </section>
   );
 }

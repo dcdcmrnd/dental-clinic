@@ -1,6 +1,7 @@
 export const nav = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
+  { label: "Results", href: "#results" },
   { label: "Certifications", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
@@ -99,6 +100,19 @@ export const services = [
   },
 ] as const;
 
+export const results = [
+  {
+    image: "/images/results-1.jpg",
+    alt: "A patient's smile before and after cosmetic dental treatment",
+    caption: "Smile brightening results",
+  },
+  {
+    image: "/images/results-2.jpg",
+    alt: "A patient's smile before, during, and after orthodontic treatment",
+    caption: "Orthodontic transformation",
+  },
+];
+
 // [ASSET: certifications / licenses / memberships] — replace placeholders with the clinic's real, verified credentials
 export const certifications = [
   { name: "PRC-Licensed Dentist", note: "Placeholder — confirm license details" },
@@ -116,7 +130,6 @@ export const contact = {
   phone: "0912 345 6789",
   email: "[ASSET: clinic email address]",
   hours: [{ days: "Monday – Saturday", time: "10:00 AM – 5:00 PM" }],
-  mapQuery: "Mount Apo Street, Davao City, Philippines",
   // [ASSET: Facebook/Instagram]
   socials: [
     { label: "Facebook", href: "https://www.facebook.com/" },

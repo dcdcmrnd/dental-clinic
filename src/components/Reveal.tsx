@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 type RevealProps = {
   children: React.ReactNode;
@@ -16,40 +18,48 @@ export default function Reveal({
   as = "div",
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
+    const el = ref.current;
+    if (!el) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
-    );
+    gsap.registerPlugin(ScrollTrigger);
 
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      gsap.set(el, { opacity: 1, y: 0 });
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          delay: delayMs / 1000,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 88%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, [delayMs]);
 
   const Tag = as;
 
   return (
-    <Tag
-      ref={ref as never}
-      className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
-        visible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-6 motion-reduce:opacity-100 motion-reduce:translate-y-0"
-      } ${className}`}
-      style={{ transitionDelay: visible ? `${delayMs}ms` : "0ms" }}
-    >
+    <Tag ref={ref as never} className={className} style={{ opacity: 0 }}>
       {children}
     </Tag>
   );

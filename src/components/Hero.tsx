@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { hero } from "@/lib/site-content";
 import Flourish from "./Flourish";
+import SplitReveal from "./SplitReveal";
+import VelocityWarp from "./VelocityWarp";
 import WaveDivider from "./WaveDivider";
 
 export default function Hero() {
@@ -45,24 +47,30 @@ export default function Hero() {
 
       <div className="relative mx-auto w-full max-w-6xl px-6 py-28 lg:px-8 lg:py-36">
         <div
-          className={`max-w-2xl transition-all duration-700 ease-out ${
-            loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          className={`max-w-2xl transition-opacity duration-700 ease-out ${
+            loaded ? "opacity-100" : "opacity-0"
           }`}
         >
           <p className="font-heading text-sm font-semibold uppercase tracking-wide text-accent">
             {hero.eyebrow}
           </p>
           <Flourish className="mt-2" toneClassName="text-accent" />
-          <h1 className="mt-4 font-heading text-4xl font-bold leading-tight text-white sm:text-5xl">
-            {hero.headline}
-          </h1>
+          <VelocityWarp>
+            <SplitReveal
+              as="h1"
+              text={hero.headline}
+              playOnMount
+              className="mt-4 font-heading text-4xl italic font-medium leading-tight text-white sm:text-5xl"
+            />
+          </VelocityWarp>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
             {hero.subtext}
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#contact"
-              className="rounded-full bg-white px-7 py-3.5 text-base font-semibold text-petrol shadow-md shadow-ink/20 transition-all hover:-translate-y-0.5 hover:bg-accent hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              data-magnetic
+              className="rounded-full bg-white px-7 py-3.5 text-base font-semibold text-petrol shadow-md shadow-ink/20 transition-colors hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               {hero.ctaLabel}
             </a>

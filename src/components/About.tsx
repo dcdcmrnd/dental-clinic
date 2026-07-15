@@ -1,14 +1,53 @@
+"use client";
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 import { about } from "@/lib/site-content";
 import Flourish from "./Flourish";
 import Reveal from "./Reveal";
+import SplitReveal from "./SplitReveal";
+import VelocityWarp from "./VelocityWarp";
 import WaveDivider from "./WaveDivider";
 
+// Subtle whole-card drift (not a crop/pan effect) — kept small so the card
+// never travels far enough to overlap the section's divider or padding.
+const PARALLAX_SHIFT_PERCENT = 6;
+
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const imageWrapper = imageWrapperRef.current;
+    if (!section || !imageWrapper) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.to(imageWrapper, {
+        yPercent: PARALLAX_SHIFT_PERCENT,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       id="about"
-      className="relative bg-white py-24"
+      ref={sectionRef}
+      className="relative bg-white/90 py-20"
       aria-labelledby="about-heading"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
@@ -18,12 +57,13 @@ export default function About() {
               {about.eyebrow}
             </p>
             <Flourish className="mt-2" />
-            <h2
-              id="about-heading"
-              className="mt-4 font-heading text-3xl font-bold text-ink sm:text-4xl"
-            >
-              {about.heading}
-            </h2>
+            <VelocityWarp>
+              <SplitReveal
+                as="h2"
+                text={about.heading}
+                className="mt-4 font-heading text-3xl italic font-medium text-ink sm:text-4xl"
+              />
+            </VelocityWarp>
             <div className="mt-6 space-y-4 text-base leading-relaxed text-muted">
               {about.paragraphs.map((p) => (
                 <p key={p}>{p}</p>
@@ -41,18 +81,18 @@ export default function About() {
           </Reveal>
 
           <Reveal delayMs={120}>
-            <div className="relative">
+            <div ref={imageWrapperRef} className="relative">
               <div
                 aria-hidden="true"
                 className="absolute -inset-3 -z-10 rounded-[2.5rem] border-2 border-accent/50"
               />
-              <div className="overflow-hidden rounded-[2.5rem] rounded-tr-xl shadow-lg shadow-ink/10">
+              <div className="overflow-hidden rounded-[2.5rem] shadow-lg shadow-ink/10">
                 <Image
                   src="/images/team.jpg"
                   alt="Members of the Gentle Smiles Dental Clinic team"
                   width={900}
                   height={1400}
-                  className="h-full w-full object-cover"
+                  className="h-auto w-full"
                 />
               </div>
             </div>
@@ -60,7 +100,7 @@ export default function About() {
         </div>
       </div>
 
-      <WaveDivider toneClassName="text-bg-soft" />
+      <WaveDivider toneClassName="text-white/90" />
     </section>
   );
 }

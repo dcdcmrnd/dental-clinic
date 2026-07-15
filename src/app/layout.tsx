@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
+import BackgroundCanvas from "@/components/BackgroundCanvas";
+import CustomCursor from "@/components/CustomCursor";
+import SmoothScrollProvider from "@/lib/lenis-context";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,10 +12,11 @@ const inter = Inter({
   display: "swap",
 });
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -41,14 +46,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${poppins.variable} h-full antialiased`}
+      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body
         className="min-h-full flex flex-col bg-white text-ink"
         suppressHydrationWarning
       >
-        {children}
+        <BackgroundCanvas />
+        <CustomCursor />
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
   );

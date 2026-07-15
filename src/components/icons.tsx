@@ -337,3 +337,20 @@ export function CloseIcon({ className = base }: IconProps) {
     </svg>
   );
 }
+
+export function PauseIcon({ className = base }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor" />
+      <rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function PlayIcon({ className = base }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M7 5v14l12-7L7 5Z" fill="currentColor" />
+    </svg>
+  );
+}
