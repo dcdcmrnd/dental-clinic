@@ -15,7 +15,6 @@ import Flourish from "./Flourish";
 import Reveal from "./Reveal";
 import SplitReveal from "./SplitReveal";
 import VelocityWarp from "./VelocityWarp";
-import WaveDivider from "./WaveDivider";
 
 const socialIcons = {
   Facebook: FacebookIcon,
@@ -187,8 +186,6 @@ export default function Contact() {
           </Reveal>
         </div>
       </div>
-
-      <WaveDivider toneClassName="text-ink/95" mirror />
     </section>
   );
 }

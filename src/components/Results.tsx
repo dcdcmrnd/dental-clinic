@@ -4,7 +4,6 @@ import Flourish from "./Flourish";
 import Reveal from "./Reveal";
 import SplitReveal from "./SplitReveal";
 import VelocityWarp from "./VelocityWarp";
-import WaveDivider from "./WaveDivider";
 
 export default function Results() {
   return (
@@ -53,8 +52,6 @@ export default function Results() {
           ))}
         </div>
       </div>
-
-      <WaveDivider toneClassName="text-white/90" />
     </section>
   );
 }

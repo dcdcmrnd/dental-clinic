@@ -7,7 +7,6 @@ import { ShieldCheckIcon } from "./icons";
 import Reveal from "./Reveal";
 import SplitReveal from "./SplitReveal";
 import VelocityWarp from "./VelocityWarp";
-import WaveDivider from "./WaveDivider";
 
 export default function Certifications() {
   const prefersReducedMotion = useReducedMotion();
@@ -15,7 +14,7 @@ export default function Certifications() {
   return (
     <section
       id="certifications"
-      className="relative bg-white/90 py-20"
+      className="relative bg-bg-soft/90 py-20"
       aria-labelledby="certifications-heading"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
@@ -48,7 +47,7 @@ export default function Certifications() {
                   ease: "easeInOut",
                   delay: i * 0.3,
                 }}
-                className="flex h-full flex-col items-center gap-3 rounded-[1.5rem] rounded-tl-[2.25rem] border-2 border-accent/60 bg-bg-soft px-5 py-7 text-center shadow-sm shadow-ink/5 transition-colors hover:border-petrol/50"
+                className="flex h-full flex-col items-center gap-3 rounded-[1.5rem] rounded-tl-[2.25rem] border-2 border-accent/60 bg-white px-5 py-7 text-center shadow-sm shadow-ink/5 transition-colors hover:border-petrol/50"
               >
                 <ShieldCheckIcon className="h-8 w-8 text-petrol" />
                 <p className="font-heading text-sm font-semibold text-ink">
@@ -60,8 +59,6 @@ export default function Certifications() {
           ))}
         </div>
       </div>
-
-      <WaveDivider toneClassName="text-white/90" />
     </section>
   );
 }

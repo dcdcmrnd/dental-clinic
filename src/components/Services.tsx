@@ -9,7 +9,6 @@ import Reveal from "./Reveal";
 import SplitReveal from "./SplitReveal";
 import TiltCard from "./TiltCard";
 import VelocityWarp from "./VelocityWarp";
-import WaveDivider from "./WaveDivider";
 
 const tints = [
   "from-petrol/15 to-accent/50",
@@ -69,7 +68,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="relative bg-white/90 py-20"
+      className="relative bg-bg-soft/90 py-20"
       aria-labelledby="services-heading"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
@@ -126,8 +125,6 @@ export default function Services() {
           </Marquee>
         </Reveal>
       )}
-
-      <WaveDivider toneClassName="text-white/90" mirror />
     </section>
   );
 }

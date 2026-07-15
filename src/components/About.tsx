@@ -9,7 +9,6 @@ import Flourish from "./Flourish";
 import Reveal from "./Reveal";
 import SplitReveal from "./SplitReveal";
 import VelocityWarp from "./VelocityWarp";
-import WaveDivider from "./WaveDivider";
 
 // Subtle whole-card drift (not a crop/pan effect) — kept small so the card
 // never travels far enough to overlap the section's divider or padding.
@@ -99,8 +98,6 @@ export default function About() {
           </Reveal>
         </div>
       </div>
-
-      <WaveDivider toneClassName="text-white/90" />
     </section>
   );
 }
