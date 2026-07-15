@@ -1,8 +1,10 @@
 export const nav = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
+  { label: "Why Choose Us", href: "#why-choose-us" },
   { label: "Results", href: "#results" },
   { label: "Certifications", href: "#certifications" },
+  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -112,6 +114,111 @@ export const results = [
     caption: "Orthodontic transformation",
   },
 ];
+
+export const whyChooseUs = {
+  eyebrow: "Why Choose Us",
+  heading: "Dental care that puts you first",
+  subtext: "A few things that set the Gentle Smiles experience apart.",
+  items: [
+    {
+      title: "Gentle Care",
+      description:
+        "A calm, unhurried approach at every visit — we explain each step before we begin, so nothing comes as a surprise.",
+    },
+    {
+      title: "Modern & Clean Facility",
+      description:
+        "A clean, comfortable space with modern equipment, kept to a high standard of hygiene for every patient.",
+    },
+    {
+      title: "Personalized Treatment",
+      description:
+        "Every treatment plan is built around your specific needs, your goals, and your comfort.",
+    },
+    {
+      title: "Transparent Communication",
+      description:
+        "Clear answers about your treatment and its cost, discussed openly before any work begins.",
+    },
+  ],
+};
+
+export const process = {
+  eyebrow: "Our Process",
+  heading: "What to expect, step by step",
+  subtext: "A simple, unhurried path from your first message to your next smile.",
+  steps: [
+    {
+      title: "Book Your Visit",
+      description: "Reach out through the form, a phone call, or Facebook to schedule a time that works for you.",
+    },
+    {
+      title: "Consultation & Exam",
+      description: "We review your dental history and take a good look at your teeth and gums to understand your needs.",
+    },
+    {
+      title: "Personalized Treatment Plan",
+      description: "We walk you through your options, timeline, and costs — so you can decide with confidence.",
+    },
+    {
+      title: "Gentle Treatment",
+      description: "Your treatment is carried out at a comfortable pace, with clear communication throughout.",
+    },
+    {
+      title: "Aftercare Follow-Up",
+      description: "We check in after your visit and share simple guidance for keeping your smile healthy at home.",
+    },
+  ],
+};
+
+// [ASSET: technology / equipment] — replace placeholders with the clinic's real, confirmed equipment
+export const technology = {
+  eyebrow: "Technology",
+  heading: "Modern tools for gentler care",
+  subtext: "A look at the kind of equipment we use — final list to be confirmed by the clinic.",
+  items: [
+    {
+      name: "[Equipment Name]",
+      description: "Placeholder — confirm with the clinic which imaging equipment to feature here.",
+    },
+    {
+      name: "[Equipment Name]",
+      description: "Placeholder — confirm with the clinic which chairside equipment to feature here.",
+    },
+    {
+      name: "[Equipment Name]",
+      description: "Placeholder — confirm with the clinic which sterilization equipment to feature here.",
+    },
+  ],
+};
+
+export const faq = {
+  eyebrow: "FAQ",
+  heading: "Common questions, answered",
+  subtext: "Can't find what you're looking for? Reach out and we'll be happy to help.",
+  items: [
+    {
+      question: "What should I bring to my first visit?",
+      answer:
+        "Please bring a valid ID and, if available, any previous dental records or X-rays. Arriving a few minutes early gives us time to complete any necessary forms.",
+    },
+    {
+      question: "Do you accept walk-ins?",
+      answer:
+        "We recommend booking ahead so we can set aside enough time for your visit, but feel free to call or message us to check same-day availability.",
+    },
+    {
+      question: "How often should I get my teeth cleaned?",
+      answer:
+        "Most patients benefit from a professional cleaning every six months, though your dentist may suggest a different schedule based on your oral health.",
+    },
+    {
+      question: "Do you accept insurance or HMOs?",
+      answer:
+        "Coverage varies by provider — please contact us with your insurance or HMO details and we'll confirm what's accepted before your visit.",
+    },
+  ],
+};
 
 // [ASSET: certifications / licenses / memberships] — replace placeholders with the clinic's real, verified credentials
 export const certifications = [

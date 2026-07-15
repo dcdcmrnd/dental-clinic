@@ -1,9 +1,7 @@
 import Image from "next/image";
 import { results } from "@/lib/site-content";
-import Flourish from "./Flourish";
 import Reveal from "./Reveal";
-import SplitReveal from "./SplitReveal";
-import VelocityWarp from "./VelocityWarp";
+import SectionIntro from "./SectionIntro";
 
 export default function Results() {
   return (
@@ -14,21 +12,13 @@ export default function Results() {
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="font-heading text-sm font-semibold uppercase tracking-wide text-petrol">
-            Real Results
-          </p>
-          <Flourish className="mt-2" align="center" />
-          <VelocityWarp>
-            <SplitReveal
-              as="h2"
-              id="results-heading"
-              text="Real patients, real smiles"
-              className="mt-4 font-heading text-3xl italic font-medium text-ink sm:text-4xl"
-            />
-          </VelocityWarp>
-          <p className="mt-4 text-base leading-relaxed text-muted">
-            A few transformations from our own patients, shared with their permission.
-          </p>
+          <SectionIntro
+            index={5}
+            label="Real Results"
+            heading="Real patients, real smiles"
+            headingId="results-heading"
+            subtext="A few transformations from our own patients, shared with their permission."
+          />
         </Reveal>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2">

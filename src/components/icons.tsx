@@ -246,6 +246,53 @@ export const serviceIcons = {
   rootcanal: RootCanalIcon,
 } as const;
 
+export function GentleCareIcon({ className = base }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M12 19s-7-4.4-7-9.5C5 6.5 7 4.5 9.5 4.5c1.4 0 2.5.7 2.5 2 0-1.3 1.1-2 2.5-2C17 4.5 19 6.5 19 9.5c0 5.1-7 9.5-7 9.5Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function FacilityIcon({ className = base }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M6 20V10l6-5 6 5v10" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M9 20v-5h6v5" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M12 3.2l.6 1.6 1.6.6-1.6.6-.6 1.6-.6-1.6-1.6-.6 1.6-.6.6-1.6Z" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function TargetIcon({ className = base }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="12" cy="12" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function ChatIcon({ className = base }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M4 5.5h16v10H9.5L5 19v-3.5H4v-10Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path d="M8 9.5h8M8 12.5h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function ShieldCheckIcon({ className = base }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">

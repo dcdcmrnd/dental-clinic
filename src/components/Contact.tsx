@@ -11,10 +11,8 @@ import {
   PinIcon,
 } from "./icons";
 import DavaoMap from "./DavaoMap";
-import Flourish from "./Flourish";
 import Reveal from "./Reveal";
-import SplitReveal from "./SplitReveal";
-import VelocityWarp from "./VelocityWarp";
+import SectionIntro from "./SectionIntro";
 
 const socialIcons = {
   Facebook: FacebookIcon,
@@ -32,21 +30,13 @@ export default function Contact() {
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="font-heading text-sm font-semibold uppercase tracking-wide text-petrol">
-            Contact
-          </p>
-          <Flourish className="mt-2" align="center" />
-          <VelocityWarp>
-            <SplitReveal
-              as="h2"
-              id="contact-heading"
-              text="Book your visit today"
-              className="mt-4 font-heading text-3xl italic font-medium text-ink sm:text-4xl"
-            />
-          </VelocityWarp>
-          <p className="mt-4 text-base leading-relaxed text-muted">
-            Reach out through the form, give us a call, or message us on Facebook — we&apos;d love to see your smile.
-          </p>
+          <SectionIntro
+            index={9}
+            label="Contact"
+            heading="Book your visit today"
+            headingId="contact-heading"
+            subtext="Reach out through the form, give us a call, or message us on Facebook — we'd love to see your smile."
+          />
         </Reveal>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-5 lg:gap-10">

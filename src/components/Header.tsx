@@ -1,19 +1,44 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { nav, siteMeta } from "@/lib/site-content";
 import { MenuIcon, CloseIcon } from "./icons";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.6);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const targets = nav
+      .map((item) => document.querySelector(item.href))
+      .filter((el): el is Element => el !== null);
+    if (targets.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+    observerRef.current = observer;
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -23,10 +48,14 @@ export default function Header() {
     };
   }, [open]);
 
+  const solid = scrolled || open;
+
   return (
     <header
-      className={`sticky top-0 z-50 bg-white/95 backdrop-blur transition-shadow duration-300 ${
-        scrolled ? "shadow-[0_4px_20px_rgba(30,42,56,0.08)]" : "shadow-none"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        solid
+          ? "bg-white/95 backdrop-blur shadow-[0_4px_20px_rgba(30,42,56,0.08)]"
+          : "bg-transparent shadow-none"
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 lg:px-8">
@@ -40,10 +69,18 @@ export default function Header() {
             priority
           />
           <span className="flex flex-col leading-none">
-            <span className="font-heading text-lg font-semibold text-petrol">
+            <span
+              className={`font-heading text-lg font-semibold transition-colors duration-300 ${
+                solid ? "text-petrol" : "text-white"
+              }`}
+            >
               {siteMeta.shortName}
             </span>
-            <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted">
+            <span
+              className={`text-[10px] font-medium uppercase tracking-[0.18em] transition-colors duration-300 ${
+                solid ? "text-muted" : "text-white/70"
+              }`}
+            >
               Dental Clinic
             </span>
           </span>
@@ -54,7 +91,15 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-ink/80 transition-colors hover:text-petrol"
+              className={`text-sm font-medium transition-colors ${
+                activeId === item.href
+                  ? solid
+                    ? "text-petrol font-semibold"
+                    : "text-white font-semibold"
+                  : solid
+                    ? "text-ink/80 hover:text-petrol"
+                    : "text-white/80 hover:text-white"
+              }`}
             >
               {item.label}
             </a>
@@ -70,7 +115,9 @@ export default function Header() {
 
         <button
           type="button"
-          className="flex items-center justify-center rounded-md p-2 text-ink md:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petrol"
+          className={`flex items-center justify-center rounded-md p-2 transition-colors md:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petrol ${
+            solid ? "text-ink" : "text-white"
+          }`}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -80,35 +127,40 @@ export default function Header() {
         </button>
       </div>
 
-      <div
-        id="mobile-menu"
-        className={`overflow-hidden bg-white transition-[max-height] duration-300 ease-out md:hidden ${
-          open ? "max-h-80" : "max-h-0"
-        }`}
-      >
-        <nav
-          className="flex flex-col gap-1 px-6 pb-4"
-          aria-label="Mobile"
-        >
-          {nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="rounded-lg px-2 py-3 text-base font-medium text-ink/80 transition-colors hover:bg-bg-soft hover:text-petrol"
-            >
-              {item.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="mt-2 rounded-full bg-petrol px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-petrol-dark"
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden bg-white md:hidden"
           >
-            Contact Us
-          </a>
-        </nav>
-      </div>
+            <nav className="flex flex-col gap-1 px-6 pb-4" aria-label="Mobile">
+              {nav.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={`rounded-lg px-2 py-3 text-base font-medium transition-colors hover:bg-bg-soft hover:text-petrol ${
+                    activeId === item.href ? "text-petrol font-semibold" : "text-ink/80"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="mt-2 rounded-full bg-petrol px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-petrol-dark"
+              >
+                Contact Us
+              </a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

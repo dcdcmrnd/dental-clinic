@@ -5,10 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { about } from "@/lib/site-content";
-import Flourish from "./Flourish";
 import Reveal from "./Reveal";
-import SplitReveal from "./SplitReveal";
-import VelocityWarp from "./VelocityWarp";
+import SectionIntro from "./SectionIntro";
 
 // Subtle whole-card drift (not a crop/pan effect) — kept small so the card
 // never travels far enough to overlap the section's divider or padding.
@@ -52,17 +50,13 @@ export default function About() {
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
           <Reveal>
-            <p className="font-heading text-sm font-semibold uppercase tracking-wide text-petrol">
-              {about.eyebrow}
-            </p>
-            <Flourish className="mt-2" />
-            <VelocityWarp>
-              <SplitReveal
-                as="h2"
-                text={about.heading}
-                className="mt-4 font-heading text-3xl italic font-medium text-ink sm:text-4xl"
-              />
-            </VelocityWarp>
+            <SectionIntro
+              index={1}
+              label={about.eyebrow}
+              heading={about.heading}
+              headingId="about-heading"
+              align="left"
+            />
             <div className="mt-6 space-y-4 text-base leading-relaxed text-muted">
               {about.paragraphs.map((p) => (
                 <p key={p}>{p}</p>

@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { hero } from "@/lib/site-content";
-import Flourish from "./Flourish";
+import { contact, hero } from "@/lib/site-content";
 import SplitReveal from "./SplitReveal";
 import VelocityWarp from "./VelocityWarp";
 import WaveDivider from "./WaveDivider";
@@ -54,7 +53,6 @@ export default function Hero() {
           <p className="font-heading text-sm font-semibold uppercase tracking-wide text-accent">
             {hero.eyebrow}
           </p>
-          <Flourish className="mt-2" toneClassName="text-accent" />
           <VelocityWarp>
             <SplitReveal
               as="h1"
@@ -81,8 +79,46 @@ export default function Hero() {
               View our services
             </a>
           </div>
+
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wide text-white/60">
+            <span>Davao City, Philippines</span>
+            <span className="h-1 w-1 rounded-full bg-white/40" aria-hidden="true" />
+            <span>
+              {contact.hours[0].days} · {contact.hours[0].time}
+            </span>
+          </div>
         </div>
       </div>
+
+      <div
+        aria-hidden="true"
+        className="absolute bottom-24 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 sm:flex"
+      >
+        <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
+          Scroll
+        </span>
+        <span className="relative h-10 w-px overflow-hidden bg-white/25">
+          <span className="hero-scroll-cue absolute inset-x-0 top-0 h-full bg-white" />
+        </span>
+      </div>
+      <style jsx>{`
+        @keyframes hero-scroll-cue {
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(100%);
+          }
+        }
+        .hero-scroll-cue {
+          animation: hero-scroll-cue 1.8s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-scroll-cue {
+            animation: none;
+          }
+        }
+      `}</style>
 
       <WaveDivider toneClassName="text-white" />
     </section>

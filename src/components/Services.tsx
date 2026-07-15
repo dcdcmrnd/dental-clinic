@@ -2,13 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { services } from "@/lib/site-content";
-import Flourish from "./Flourish";
 import { PauseIcon, PlayIcon, serviceIcons } from "./icons";
 import Marquee from "./Marquee";
 import Reveal from "./Reveal";
-import SplitReveal from "./SplitReveal";
+import SectionIntro from "./SectionIntro";
 import TiltCard from "./TiltCard";
-import VelocityWarp from "./VelocityWarp";
 
 const tints = [
   "from-petrol/15 to-accent/50",
@@ -73,33 +71,25 @@ export default function Services() {
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="font-heading text-sm font-semibold uppercase tracking-wide text-petrol">
-            Services
-          </p>
-          <Flourish className="mt-2" align="center" />
-          <VelocityWarp>
-            <SplitReveal
-              as="h2"
-              id="services-heading"
-              text="Care for every stage of your smile"
-              className="mt-4 font-heading text-3xl italic font-medium text-ink sm:text-4xl"
-            />
-          </VelocityWarp>
-          <p className="mt-4 text-base leading-relaxed text-muted">
-            A snapshot of what we offer — final list and descriptions to be confirmed by the clinic.
-            Visuals below are illustrated placeholders; swap in real photos when available.
-          </p>
-          {!reducedMotion && (
-            <button
-              type="button"
-              onClick={() => setPaused((v) => !v)}
-              aria-pressed={paused}
-              className="mt-5 inline-flex items-center gap-2 rounded-full border border-accent/70 px-4 py-2 text-xs font-semibold text-ink/70 transition-colors hover:border-petrol/50 hover:text-petrol focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petrol"
-            >
-              {paused ? <PlayIcon className="h-4 w-4" /> : <PauseIcon className="h-4 w-4" />}
-              {paused ? "Resume scrolling" : "Pause scrolling"}
-            </button>
-          )}
+          <SectionIntro
+            index={2}
+            label="Services"
+            heading="Care for every stage of your smile"
+            headingId="services-heading"
+            subtext="A snapshot of what we offer — final list and descriptions to be confirmed by the clinic. Visuals below are illustrated placeholders; swap in real photos when available."
+          >
+            {!reducedMotion && (
+              <button
+                type="button"
+                onClick={() => setPaused((v) => !v)}
+                aria-pressed={paused}
+                className="mt-5 inline-flex items-center gap-2 rounded-full border border-accent/70 px-4 py-2 text-xs font-semibold text-ink/70 transition-colors hover:border-petrol/50 hover:text-petrol focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petrol"
+              >
+                {paused ? <PlayIcon className="h-4 w-4" /> : <PauseIcon className="h-4 w-4" />}
+                {paused ? "Resume scrolling" : "Pause scrolling"}
+              </button>
+            )}
+          </SectionIntro>
         </Reveal>
       </div>
 
