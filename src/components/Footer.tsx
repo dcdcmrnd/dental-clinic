@@ -99,14 +99,21 @@ export default function Footer() {
           </div>
           <p className="flex items-center gap-2">
             Designed &amp; developed by
-            <Image
-              src="/images/aequora-logo.png"
-              alt="Aequora Digital"
-              width={24}
-              height={24}
-              className="h-6 w-6 rounded-full object-cover"
-            />
-            <span className="font-medium text-white/80">Aequora Digital</span>
+            <a
+              href="https://www.aequoradigital.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              <Image
+                src="/images/aequora-logo.png"
+                alt="Aequora Digital"
+                width={24}
+                height={24}
+                className="h-6 w-6 rounded-full object-cover"
+              />
+              <span className="font-medium text-white/80">Aequora Digital</span>
+            </a>
           </p>
         </div>
       </div>

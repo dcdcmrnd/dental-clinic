@@ -90,36 +90,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <div
-        aria-hidden="true"
-        className="absolute bottom-24 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 sm:flex"
-      >
-        <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
-          Scroll
-        </span>
-        <span className="relative h-10 w-px overflow-hidden bg-white/25">
-          <span className="hero-scroll-cue absolute inset-x-0 top-0 h-full bg-white" />
-        </span>
-      </div>
-      <style jsx>{`
-        @keyframes hero-scroll-cue {
-          0% {
-            transform: translateY(-100%);
-          }
-          100% {
-            transform: translateY(100%);
-          }
-        }
-        .hero-scroll-cue {
-          animation: hero-scroll-cue 1.8s ease-in-out infinite;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .hero-scroll-cue {
-            animation: none;
-          }
-        }
-      `}</style>
-
       <WaveDivider toneClassName="text-white" />
     </section>
   );
