@@ -1,11 +1,7 @@
 import Image from "next/image";
-import { contact, nav, siteMeta } from "@/lib/site-content";
-import { FacebookIcon, InstagramIcon } from "./icons";
-
-const socialIcons = {
-  Facebook: FacebookIcon,
-  Instagram: InstagramIcon,
-};
+import Link from "next/link";
+import { contact, footerNav, siteMeta } from "@/lib/site-content";
+import { FacebookIcon } from "./icons";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -32,14 +28,14 @@ export default function Footer() {
                 Quick Links
               </p>
               <ul className="mt-4 space-y-2">
-                {nav.map((item) => (
+                {footerNav.map((item) => (
                   <li key={item.href}>
-                    <a
+                    <Link
                       href={item.href}
                       className="rounded text-sm text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -58,28 +54,19 @@ export default function Footer() {
                     {contact.phone}
                   </a>
                 </li>
-                <li>{contact.email}</li>
                 {contact.addressLines.map((line) => (
                   <li key={line}>{line}</li>
                 ))}
               </ul>
-              <div className="mt-5 flex gap-3">
-                {contact.socials.map((social) => {
-                  const Icon = socialIcons[social.label as keyof typeof socialIcons];
-                  return (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Gentle Smiles Dental Clinic on ${social.label}`}
-                      className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                    >
-                      {Icon ? <Icon className="h-4 w-4" /> : social.label}
-                    </a>
-                  );
-                })}
-              </div>
+              <a
+                href={contact.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/20 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                <FacebookIcon className="h-4 w-4" />
+                Follow us on Facebook
+              </a>
             </div>
           </div>
         </div>

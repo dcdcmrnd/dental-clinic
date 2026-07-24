@@ -7,13 +7,13 @@ export default function Results() {
   return (
     <section
       id="results"
-      className="relative bg-white/90 py-20"
+      className="relative bg-bg-soft/90 py-20"
       aria-labelledby="results-heading"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <SectionIntro
-            index={5}
+            index={4}
             label="Real Results"
             heading="Real patients, real smiles"
             headingId="results-heading"

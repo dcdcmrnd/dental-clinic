@@ -5,13 +5,13 @@ import maplibregl from "maplibre-gl";
 import { useEffect, useRef, useState } from "react";
 import { contact, siteMeta } from "@/lib/site-content";
 
-// Geocoded to Davao Doctors Hospital, E. Quirino Avenue, Poblacion District,
-// Davao City (via OpenStreetMap Nominatim) — the clinic's own reference photo
-// places it on this same block. Replace with the clinic's exact building
-// coordinates once available; OSM has no "Mount Apo Street" indexed near this
-// landmark, only unrelated streets of the same name ~5km away in Talomo.
-const CLINIC_LNG = 125.60441;
-const CLINIC_LAT = 7.0704387;
+// Geocoded to Mount Apo Street, Barangay 7-A (General Malvar), Poblacion
+// District, Davao City (via OpenStreetMap Nominatim) — matches the clinic's
+// confirmed address (Ground Floor, Door 7, Elles Pension, Mt. Apo St.,
+// Brgy. 7-A, near Davao Doctors Hospital & Dunkin Donuts). Nudge to the
+// exact building once the clinic can confirm it on a map.
+const CLINIC_LNG = 125.6051757;
+const CLINIC_LAT = 7.0725431;
 
 const DARK_STYLE_URL =
   "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";

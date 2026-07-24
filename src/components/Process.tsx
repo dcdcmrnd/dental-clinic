@@ -46,13 +46,13 @@ export default function Process() {
     <section
       id="process"
       ref={sectionRef}
-      className="relative bg-bg-soft/90 py-20"
+      className="relative bg-white/90 py-20"
       aria-labelledby="process-heading"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <SectionIntro
-            index={6}
+            index={5}
             label={process.eyebrow}
             heading={process.heading}
             headingId="process-heading"
@@ -60,7 +60,7 @@ export default function Process() {
           />
         </Reveal>
 
-        <div className="relative mt-16 pl-10 sm:pl-14">
+        <div className="relative mx-auto mt-16 max-w-2xl pl-10 sm:pl-14">
           <div
             aria-hidden="true"
             className="absolute bottom-1 left-3 top-1 w-px bg-accent/40 sm:left-5"

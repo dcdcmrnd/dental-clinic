@@ -32,7 +32,7 @@ export default function WhyChooseUs() {
               "py-8 sm:py-10",
               i > 0 ? "border-t border-accent/40" : "",
               topRow ? "sm:border-t-0" : "",
-              rightCol ? "sm:border-l sm:border-accent/40 sm:pl-8" : "",
+              rightCol ? "sm:border-l sm:border-accent/40 sm:pl-8" : "sm:pr-8",
             ]
               .filter(Boolean)
               .join(" ");
@@ -46,7 +46,7 @@ export default function WhyChooseUs() {
                 <h3 className="mt-4 font-heading text-lg font-semibold text-ink">
                   {item.title}
                 </h3>
-                <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted">
+                <p className="mt-2 text-sm leading-relaxed text-muted">
                   {item.description}
                 </p>
               </Reveal>

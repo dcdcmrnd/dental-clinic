@@ -14,8 +14,8 @@ const tints = [
   "from-petrol/20 to-bg-soft",
 ];
 
-const rowA = services.slice(0, 7);
-const rowB = services.slice(7);
+const rowA = services.slice(0, 5);
+const rowB = services.slice(5);
 
 function ServiceCard({
   service,
@@ -29,7 +29,7 @@ function ServiceCard({
     <TiltCard className="w-72 shrink-0 sm:w-80">
       <div className="group h-full overflow-hidden rounded-[1.75rem] rounded-tr-[2.5rem] border-2 border-accent/60 bg-white shadow-sm shadow-ink/5 transition-colors duration-300 hover:border-petrol/50">
         <div
-          className={`relative flex h-28 items-center justify-center overflow-hidden bg-gradient-to-br ${tints[index % tints.length]}`}
+          className={`relative flex h-24 items-center justify-center overflow-hidden bg-gradient-to-br ${tints[index % tints.length]}`}
         >
           <div
             aria-hidden="true"
@@ -39,15 +39,17 @@ function ServiceCard({
             aria-hidden="true"
             className="absolute -bottom-8 -left-4 h-16 w-16 rounded-full bg-petrol/10 blur-xl"
           />
-          <Icon className="relative h-12 w-12 text-petrol transition-transform duration-300 group-hover:scale-110" />
+          <Icon className="relative h-10 w-10 text-petrol transition-transform duration-300 group-hover:scale-110" />
         </div>
         <div className="p-6">
           <h3 className="font-heading text-lg font-semibold text-ink">
-            {service.name}
+            {service.category}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted">
-            {service.description}
-          </p>
+          {service.items.length > 0 && (
+            <p className="mt-2 text-sm leading-relaxed text-muted">
+              {service.items.join(", ")}
+            </p>
+          )}
         </div>
       </div>
     </TiltCard>
@@ -72,11 +74,11 @@ export default function Services() {
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <SectionIntro
-            index={2}
+            index={1}
             label="Services"
             heading="Care for every stage of your smile"
             headingId="services-heading"
-            subtext="A snapshot of what we offer — final list and descriptions to be confirmed by the clinic. Visuals below are illustrated placeholders; swap in real photos when available."
+            subtext="Our full range of treatments, organized by specialty."
           >
             {!reducedMotion && (
               <button
@@ -94,9 +96,9 @@ export default function Services() {
       </div>
 
       {reducedMotion ? (
-        <div className="mx-auto mt-14 grid max-w-6xl gap-6 px-6 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+        <div className="mx-auto mt-14 grid max-w-6xl items-start gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3 lg:px-8">
           {services.map((service, i) => (
-            <Reveal key={service.name} delayMs={(i % 4) * 80} className="w-full">
+            <Reveal key={service.category} delayMs={(i % 3) * 80} className="w-full">
               <ServiceCard service={service} index={i} />
             </Reveal>
           ))}
@@ -105,12 +107,12 @@ export default function Services() {
         <Reveal className="mt-14 space-y-6" delayMs={100}>
           <Marquee direction="left" speed={45} paused={paused}>
             {rowA.map((service, i) => (
-              <ServiceCard key={service.name} service={service} index={i} />
+              <ServiceCard key={service.category} service={service} index={i} />
             ))}
           </Marquee>
           <Marquee direction="right" speed={45} paused={paused}>
             {rowB.map((service, i) => (
-              <ServiceCard key={service.name} service={service} index={i + 7} />
+              <ServiceCard key={service.category} service={service} index={i + 5} />
             ))}
           </Marquee>
         </Reveal>

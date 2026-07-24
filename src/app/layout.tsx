@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import BackgroundCanvas from "@/components/BackgroundCanvas";
 import CustomCursor from "@/components/CustomCursor";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import SmoothScrollProvider from "@/lib/lenis-context";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
@@ -55,7 +57,11 @@ export default function RootLayout({
       >
         <BackgroundCanvas />
         <CustomCursor />
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

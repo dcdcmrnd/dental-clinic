@@ -78,9 +78,9 @@ export default function Marquee({
       onFocus={() => setHoverPaused(true)}
       onBlur={() => setHoverPaused(false)}
     >
-      <div ref={trackRef} className="flex w-max gap-6">
-        <div className="flex shrink-0 gap-6">{children}</div>
-        <div className="flex shrink-0 gap-6" aria-hidden="true">
+      <div ref={trackRef} className="flex w-max items-start gap-6">
+        <div className="flex shrink-0 items-start gap-6">{children}</div>
+        <div className="flex shrink-0 items-start gap-6" aria-hidden="true">
           {children}
         </div>
       </div>

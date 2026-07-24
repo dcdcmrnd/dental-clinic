@@ -1,11 +1,22 @@
+// Trimmed set shown in the header nav — keep this short so the header
+// doesn't get crowded. "Contact" is left out since the header already has
+// a standalone "Contact Us" button pointing to the same place. The
+// footer's Quick Links use footerNav below for the fuller list.
 export const nav = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Why Choose Us", href: "#why-choose-us" },
-  { label: "Results", href: "#results" },
-  { label: "Certifications", href: "#certifications" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/services" },
+  { label: "Results", href: "/#results" },
+  { label: "FAQ", href: "/faq" },
+];
+
+export const footerNav = [
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/services" },
+  { label: "Why Choose Us", href: "/#why-choose-us" },
+  { label: "Results", href: "/#results" },
+  { label: "Training", href: "/#training" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const hero = {
@@ -26,79 +37,65 @@ export const about = {
     "Gentle Smiles Dental Clinic was built around a simple idea: going to the dentist shouldn't feel stressful. Located along Mount Apo Street in Davao City, our clinic offers a clean, welcoming space where patients of all ages can feel at ease.",
     "From your first visit, our team takes the time to listen, explain your options clearly, and walk you through every step of your care — no rushed appointments, no surprises.",
   ],
-  // [ASSET: dentist bio + photo] — placeholder until the clinic provides the dentist's name, credentials, and headshot
+  // [ASSET: dentist bio + photo] — name confirmed from training certificates; bio still needs approved copy from the clinic
   dentist: {
-    name: "[Dentist Name], D.M.D.",
+    name: "Dr. Delia Cunanan, D.M.D.",
     bio: "A short professional background for the lead dentist goes here — education, years of experience, and areas of focus. Replace this placeholder with approved copy.",
   },
 };
 
-// [ASSET: list of services + one-line descriptions] — confirm final names/descriptions with the clinic
 export const services = [
   {
-    icon: "cleaning",
-    name: "Oral Prophylaxis (Dental Cleaning)",
-    description: "Professional cleaning to remove plaque and tartar for a healthier smile.",
-  },
-  {
-    icon: "restoration",
-    name: "Dental Pasta / Restoration",
-    description: "Tooth-colored fillings to repair cavities and damaged teeth.",
-  },
-  {
     icon: "extraction",
-    name: "Tooth Extraction (Bunot)",
-    description: "Safe, comfortable removal of teeth that can't be saved.",
-  },
-  {
-    icon: "bridge",
-    name: "Fixed Bridge",
-    description: "A non-removable option for replacing one or more missing teeth.",
-  },
-  {
-    icon: "crown",
-    name: "Dental Jackets / Crowns (Zirconia)",
-    description: "Durable, natural-looking crowns to protect and restore damaged teeth.",
-  },
-  {
-    icon: "denture",
-    name: "Dentures (Pustiso)",
-    description: "Removable replacements that restore your bite and your smile.",
-  },
-  {
-    icon: "braces",
-    name: "Braces (Orthodontics)",
-    description: "Guided treatment to gradually straighten and align your teeth.",
-  },
-  {
-    icon: "tmj",
-    name: "Craniodontics / TMJ",
-    description: "Care for jaw joint pain, clicking, and related discomfort.",
-  },
-  {
-    icon: "implant",
-    name: "Dental Implant",
-    description: "A durable, natural-looking option for replacing missing teeth.",
-  },
-  {
-    icon: "veneer",
-    name: "Veneers",
-    description: "Thin custom shells that refine the shape and color of your smile.",
+    category: "Oral Surgery",
+    items: ["Tooth Wisdom Removal (Impacted 3rd Molar)", "Apicoectomy", "Alveolectomy"],
   },
   {
     icon: "periodontics",
-    name: "Periodontics",
-    description: "Treatment and care for healthy gums and supporting tissue.",
+    category: "Periodontics",
+    items: ["Gingivectomy", "Frenectomy"],
   },
   {
-    icon: "whitening",
-    name: "Teeth Whitening",
-    description: "Brightening treatment to help lift stains and discoloration.",
+    icon: "veneer",
+    category: "Esthetics",
+    items: ["Veneers", "Laminates"],
+  },
+  {
+    icon: "tmj",
+    category: "Craniodontics",
+    items: ["TMJ Problem (Disorder/Dysfunction)"],
+  },
+  {
+    icon: "braces",
+    category: "Orthodontics",
+    items: ["Braces"],
+  },
+  {
+    icon: "cleaning",
+    category: "General Dentistry",
+    items: [
+      "Dental Cleaning",
+      "Pasta",
+      "Tooth Extraction (Bunot)",
+      "Denture (Pustiso) — Plastic, Flexible",
+      "Jacket Crown (Plastic, Porcelain, Zirconia)",
+      "Fixed Bridge",
+    ],
   },
   {
     icon: "rootcanal",
-    name: "Root Canal Treatment",
-    description: "Treatment to save an infected or badly damaged tooth.",
+    category: "Endodontics",
+    items: ["Root Canal Treatment"],
+  },
+  {
+    icon: "implant",
+    category: "Dental Implant",
+    items: [],
+  },
+  {
+    icon: "whitening",
+    category: "Teeth Whitening",
+    items: [],
   },
 ] as const;
 
@@ -171,27 +168,6 @@ export const process = {
   ],
 };
 
-// [ASSET: technology / equipment] — replace placeholders with the clinic's real, confirmed equipment
-export const technology = {
-  eyebrow: "Technology",
-  heading: "Modern tools for gentler care",
-  subtext: "A look at the kind of equipment we use — final list to be confirmed by the clinic.",
-  items: [
-    {
-      name: "[Equipment Name]",
-      description: "Placeholder — confirm with the clinic which imaging equipment to feature here.",
-    },
-    {
-      name: "[Equipment Name]",
-      description: "Placeholder — confirm with the clinic which chairside equipment to feature here.",
-    },
-    {
-      name: "[Equipment Name]",
-      description: "Placeholder — confirm with the clinic which sterilization equipment to feature here.",
-    },
-  ],
-};
-
 export const faq = {
   eyebrow: "FAQ",
   heading: "Common questions, answered",
@@ -220,28 +196,96 @@ export const faq = {
   ],
 };
 
-// [ASSET: certifications / licenses / memberships] — replace placeholders with the clinic's real, verified credentials
-export const certifications = [
-  { name: "PRC-Licensed Dentist", note: "Placeholder — confirm license details" },
-  { name: "Philippine Dental Association Member", note: "Placeholder — confirm membership" },
-  { name: "DOH-Registered Clinic", note: "Placeholder — confirm registration" },
-  { name: "Infection Control Certified", note: "Placeholder — confirm certification" },
-];
+export const trainingIntro = {
+  eyebrow: "Continuing Education",
+  heading: "Always training, always improving",
+  subtext:
+    "Our team regularly attends hands-on courses with leading Philippine specialists to keep every technique current — here's a look at our most recent training.",
+};
+
+export const trainings = [
+  {
+    title: "Ceramic Veneers from A-Z",
+    program: "Master Path Curriculum, Module 4 — Anterior & Posterior Veneers",
+    instructor: "Dr. Tina Lopez, DMD",
+    instructorNote: "Master Instructor, Craniodontic Group Philippines",
+    host: "Stevenson Dental Solutions",
+    location: "Makati City, Philippines",
+    date: "June 2026",
+    image: {
+      src: "/images/training-mentor-portrait.jpg",
+      alt: "Dr. Delia Cunanan with Master Instructor Dr. Tina Lopez, DMD, at the Ceramic Veneers from A-Z workshop",
+    },
+    quote: {
+      text: "“No dull moment for five straight days — hands-on veneer work from morning to night, the energy never dropped, and we came home more confident and eager to keep learning.”",
+      attribution: "The team's takeaway from the workshop",
+    },
+  },
+  {
+    title: "Clinical Perio Masterclass",
+    program:
+      "Comprehensive periodontitis course for general practitioners — lecture & hands-on workshop",
+    instructor: "Dr. Steve B. Almonte, MSCD Perio",
+    instructorNote: "Past President, Philippine Dental Association (2018)",
+    host: "Dental Recipe Academy",
+    location: "Las Piñas City, Philippines",
+    date: "April 2026",
+    image: {
+      src: "/images/training-perio-certificate.jpg",
+      alt: "Dr. Delia Cunanan receiving her certificate at the Clinical Perio Masterclass",
+    },
+    quote: null,
+  },
+] as const;
+
+export const trainingPhotos = [
+  {
+    src: "/images/training-workshop-intro.jpg",
+    alt: "Dr. Delia Cunanan and Dr. Tina Lopez in front of the veneer workshop's opening presentation slide",
+  },
+  {
+    src: "/images/training-workshop-booklet.jpg",
+    alt: "The Ceramic Veneers from A-Z intensive hands-on workshop program booklet",
+  },
+  {
+    src: "/images/training-hands-on-1.jpg",
+    alt: "Dr. Tina Lopez guiding hands-on veneer work during the workshop",
+  },
+  {
+    src: "/images/training-hands-on-2.jpg",
+    alt: "Close-up of hands-on ceramic veneer shaping during the workshop",
+  },
+  {
+    src: "/images/training-digital-tech.jpg",
+    alt: "Digital jaw-tracking technology demonstrated during the veneer workshop",
+  },
+  {
+    src: "/images/training-kit.jpg",
+    alt: "Workshop instrument kit and dental model used during hands-on training",
+  },
+  {
+    src: "/images/training-group.jpg",
+    alt: "Dr. Delia Cunanan receiving her certificate of participation alongside fellow veneer workshop trainees",
+  },
+  {
+    src: "/images/training-perio-hands-on.jpg",
+    alt: "Hands-on periodontal technique practice during the Clinical Perio Masterclass",
+  },
+  {
+    src: "/images/training-perio-group.jpg",
+    alt: "Group photo of attendees at the Clinical Perio Masterclass",
+  },
+] as const;
 
 // [ASSET: contact details + hours]
 export const contact = {
   addressLines: [
-    "Mount Apo Street, Davao City, Davao del Sur, Philippines",
-    "(near Davao Doctors Hospital) — [ASSET: exact unit/building number]",
+    "Ground Floor, Door 7, Elles Pension, Mt. Apo St., Brgy. 7-A, Davao City, Davao del Sur 8000",
+    "(Near Davao Doctors Hospital & Dunkin Donuts)",
   ],
   phone: "0912 345 6789",
-  email: "[ASSET: clinic email address]",
   hours: [{ days: "Monday – Saturday", time: "10:00 AM – 5:00 PM" }],
-  // [ASSET: Facebook/Instagram]
-  socials: [
-    { label: "Facebook", href: "https://www.facebook.com/" },
-    { label: "Instagram", href: "https://www.instagram.com/" },
-  ],
+  facebook: "https://www.facebook.com/GentleSmilesDentalClinicDAVAO",
 };
 
 export const siteMeta = {

@@ -2,22 +2,10 @@
 
 import { useState } from "react";
 import { contact } from "@/lib/site-content";
-import {
-  ClockIcon,
-  FacebookIcon,
-  InstagramIcon,
-  MailIcon,
-  PhoneIcon,
-  PinIcon,
-} from "./icons";
+import { ClockIcon, FacebookIcon, PhoneIcon, PinIcon } from "./icons";
 import DavaoMap from "./DavaoMap";
 import Reveal from "./Reveal";
 import SectionIntro from "./SectionIntro";
-
-const socialIcons = {
-  Facebook: FacebookIcon,
-  Instagram: InstagramIcon,
-};
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -31,7 +19,7 @@ export default function Contact() {
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <SectionIntro
-            index={9}
+            index={7}
             label="Contact"
             heading="Book your visit today"
             headingId="contact-heading"
@@ -68,14 +56,6 @@ export default function Contact() {
               </div>
 
               <div className="flex gap-4">
-                <MailIcon className="h-6 w-6 shrink-0 text-petrol" />
-                <div>
-                  <p className="font-heading text-sm font-semibold text-ink">Email</p>
-                  <p className="text-sm text-muted">{contact.email}</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
                 <ClockIcon className="h-6 w-6 shrink-0 text-petrol" />
                 <div>
                   <p className="font-heading text-sm font-semibold text-ink">Hours</p>
@@ -87,22 +67,19 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="mt-auto flex gap-3 pt-2">
-                {contact.socials.map((social) => {
-                  const Icon = socialIcons[social.label as keyof typeof socialIcons];
-                  return (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Gentle Smiles Dental Clinic on ${social.label}`}
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-bg-soft text-petrol transition-colors hover:bg-petrol hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petrol"
-                    >
-                      {Icon ? <Icon className="h-5 w-5" /> : social.label}
-                    </a>
-                  );
-                })}
+              <div className="mt-auto flex gap-4 border-t border-accent/40 pt-6">
+                <FacebookIcon className="h-6 w-6 shrink-0 text-petrol" />
+                <div>
+                  <p className="font-heading text-sm font-semibold text-ink">Facebook</p>
+                  <a
+                    href={contact.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-muted transition-colors hover:text-petrol"
+                  >
+                    Message us on Facebook
+                  </a>
+                </div>
               </div>
             </div>
           </Reveal>

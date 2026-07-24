@@ -2,14 +2,17 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { nav, siteMeta } from "@/lib/site-content";
 import { MenuIcon, CloseIcon } from "./icons";
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeHash, setActiveHash] = useState<string | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
@@ -20,26 +23,36 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    if (pathname !== "/") return;
+
     const targets = nav
-      .map((item) => document.querySelector(item.href))
-      .filter((el): el is Element => el !== null);
+      .filter((item) => item.href.includes("#"))
+      .map((item) => ({
+        href: item.href,
+        el: document.querySelector(`#${item.href.split("#")[1]}`),
+      }))
+      .filter((t): t is { href: string; el: Element } => t.el !== null);
     if (targets.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveId(`#${entry.target.id}`);
+            const match = targets.find((t) => t.el === entry.target);
+            if (match) setActiveHash(match.href);
           }
         });
       },
       { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
     );
 
-    targets.forEach((el) => observer.observe(el));
+    targets.forEach((t) => observer.observe(t.el));
     observerRef.current = observer;
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
+
+  const isActive = (href: string) =>
+    href.includes("#") ? pathname === "/" && activeHash === href : pathname === href;
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -59,7 +72,7 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 lg:px-8">
-        <a href="#top" className="flex items-center gap-3">
+        <Link href="/#top" className="flex items-center gap-3">
           <Image
             src="/images/logo.png"
             alt="Gentle Smiles Dental Clinic logo"
@@ -84,15 +97,15 @@ export default function Header() {
               Dental Clinic
             </span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
           {nav.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className={`text-sm font-medium transition-colors ${
-                activeId === item.href
+                isActive(item.href)
                   ? solid
                     ? "text-petrol font-semibold"
                     : "text-white font-semibold"
@@ -102,15 +115,15 @@ export default function Header() {
               }`}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             data-magnetic
             className="rounded-full bg-petrol px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-petrol-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petrol"
           >
             Contact Us
-          </a>
+          </Link>
         </nav>
 
         <button
@@ -139,24 +152,24 @@ export default function Header() {
           >
             <nav className="flex flex-col gap-1 px-6 pb-4" aria-label="Mobile">
               {nav.map((item) => (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={`rounded-lg px-2 py-3 text-base font-medium transition-colors hover:bg-bg-soft hover:text-petrol ${
-                    activeId === item.href ? "text-petrol font-semibold" : "text-ink/80"
+                    isActive(item.href) ? "text-petrol font-semibold" : "text-ink/80"
                   }`}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 onClick={() => setOpen(false)}
                 className="mt-2 rounded-full bg-petrol px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-petrol-dark"
               >
                 Contact Us
-              </a>
+              </Link>
             </nav>
           </motion.div>
         )}

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { contact, hero } from "@/lib/site-content";
 import SplitReveal from "./SplitReveal";
@@ -65,19 +66,19 @@ export default function Hero() {
             {hero.subtext}
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               data-magnetic
               className="rounded-full bg-white px-7 py-3.5 text-base font-semibold text-petrol shadow-md shadow-ink/20 transition-colors hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               {hero.ctaLabel}
-            </a>
-            <a
-              href="#services"
+            </Link>
+            <Link
+              href="/services"
               className="text-base font-semibold text-white/90 underline-offset-4 transition-colors hover:text-white hover:underline"
             >
               View our services
-            </a>
+            </Link>
           </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wide text-white/60">

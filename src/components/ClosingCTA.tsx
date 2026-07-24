@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
 
 export default function ClosingCTA() {
@@ -25,13 +26,13 @@ export default function ClosingCTA() {
           <p className="mt-4 text-base leading-relaxed text-white/80">
             Book your visit today — we&apos;d love to help you feel confident about your smile.
           </p>
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             data-magnetic
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-petrol shadow-md shadow-ink/20 transition-colors hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Contact Us
-          </a>
+          </Link>
         </Reveal>
       </div>
     </section>
